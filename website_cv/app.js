@@ -9,49 +9,39 @@ document.getElementById('uploadForm').addEventListener('submit', async function(
         return;
     }
     
-    const apiKey = 'YOUR_AZURE_API_KEY';
-    const endpoint = 'YOUR_AZURE_ENDPOINT';
-    const apiUrl = `${endpoint}/vision/v3.0/analyze?visualFeatures=Description`;
+    const apiKey = '2014efbbdf394c2f821fea7c56f80ccb';
+    const endpoint = 'https://eju110624-prediction.cognitiveservices.azure.com/customvision/v3.0/Prediction/70e73cce-656c-48f5-a8d9-8b8f2ad032e6/classify/iterations/Iteration1/image';
     
-    const reader = new FileReader();
-    
-    reader.onloadend = async function() {
-        const imageData = reader.result.split(',')[1];
+    try {
+        const response = await fetch(endpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/octet-stream',
+                'Prediction-Key': apiKey
+            },
+            body: file
+        });
         
-        try {
-            const response = await fetch(apiUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/octet-stream',
-                    'Ocp-Apim-Subscription-Key': apiKey
-                },
-                body: file
-            });
-            
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            
-            const data = await response.json();
-            const freshness = determineFreshness(data);
-            
-            document.getElementById('result').innerText = `Fruit freshness: ${freshness}`;
-        } catch (error) {
-            console.error('Error:', error);
-            document.getElementById('result').innerText = 'Error checking fruit freshness.';
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
-    };
-    
-    reader.readAsDataURL(file);
+        
+        const data = await response.json();
+        const freshness = determineFreshness(data);
+        
+        document.getElementById('result').innerText = `Fruit freshness: ${freshness}`;
+    } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('result').innerText = 'Error checking fruit freshness.';
+    }
 });
 
 function determineFreshness(data) {
-    // TODO: regarder le format de la réponse de azure cv et adapter ce code.
-    if (data.description && data.description.captions.length > 0) {
-        const caption = data.description.captions[0].text;
-        if (caption.includes('fresh')) {
+    if (data.predictions && data.predictions.length > 0) {
+        const topPrediction = data.predictions[0];
+        if (topPrediction.tagName.toLowerCase().includes('fresh')) {
             return 'Fresh';
-        } else if (caption.includes('rotten')) {
+        } else if (topPrediction.tagName.toLowerCase().includes('rotten')) {
             return 'Rotten';
         }
     }
