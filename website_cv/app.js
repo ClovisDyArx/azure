@@ -3,6 +3,7 @@ document.getElementById('uploadForm').addEventListener('submit', async function(
     
     const fileInput = document.getElementById('imageInput');
     const file = fileInput.files[0];
+    const loadingSpinner = document.getElementById('loadingSpinner');
     
     if (!file) {
         alert('Please select an image file.');
@@ -11,6 +12,9 @@ document.getElementById('uploadForm').addEventListener('submit', async function(
     
     const apiKey = '2014efbbdf394c2f821fea7c56f80ccb';
     const endpoint = 'https://eju110624-prediction.cognitiveservices.azure.com/customvision/v3.0/Prediction/70e73cce-656c-48f5-a8d9-8b8f2ad032e6/classify/iterations/Iteration1/image';
+    
+    // Show loading spinner
+    loadingSpinner.style.display = 'inline-block';
     
     try {
         const response = await fetch(endpoint, {
@@ -28,11 +32,16 @@ document.getElementById('uploadForm').addEventListener('submit', async function(
         
         const data = await response.json();
         const freshness = determineFreshness(data);
+	const info = getInfo(data);
         
         document.getElementById('result').innerText = `Fruit freshness: ${freshness}`;
+        document.getElementById('result-info').innerText = `Model certainty: ${info}`;
+	
     } catch (error) {
         console.error('Error:', error);
         document.getElementById('result').innerText = 'Error checking fruit freshness.';
+    } finally {
+        loadingSpinner.style.display = 'none';
     }
 });
 
@@ -48,3 +57,10 @@ function determineFreshness(data) {
     return 'Unknown';
 }
 
+function getInfo(data) {
+    if (data.predictions && data.predictions.length > 0) {
+        const pred = data.predictions[0].probability;
+	return `${Number((pred * 100).toFixed(2))} %`;
+    }
+    return 'Unknown';
+}
