@@ -11,12 +11,22 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f4f4f4;
+            background: url('background.png') repeat;
+	    background-size: 1000px 1000px;
+            animation: moveBackground 30s linear infinite;
             font-family: Arial, sans-serif;
+        }
+        @keyframes moveBackground {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 1000px -1000px;
+            }
         }
         .container {
             text-align: center;
-            background: #fff;
+            background: rgba(255, 255, 255, 0.8);
             padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
