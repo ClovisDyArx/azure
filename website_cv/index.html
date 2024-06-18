@@ -34,12 +34,18 @@
         h1 {
             color: #333;
         }
-        form {
+        .form-group {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin: 1rem 0;
-            position: relative;
         }
         input[type="file"] {
-            margin: 1rem 0;
+            margin-right: 1rem;
+        }
+        img {
+            max-width: 100px;
+            max-height: 100px;
         }
         button {
             background-color: #4CAF50;
@@ -48,6 +54,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            margin: 1rem 0;
             position: relative;
         }
         button:hover {
@@ -79,20 +86,29 @@
             font-size: 1.2rem;
             color: #333;
         }
+        #result-info {
+            margin-top: 0.5rem;
+            font-size: 1rem;
+            color: #666;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Fruit Freshness Checker</h1>
-        <form id="uploadForm">
+<div class="container">
+    <h1>Fruit Freshness Checker</h1>
+    <form id="uploadForm">
+        <div class="form-group">
             <input type="file" id="imageInput" accept="image/*" required>
+            <img id="imagePreview" src="jonesy.png" alt="Image Preview">
+        </div>
+        <div style="position: relative; display: inline-block;">
             <button type="submit">Check Freshness</button>
             <span class="loading-spinner" id="loadingSpinner"></span>
-        </form>
-        <p id="result"></p>
-	<p id="result-info"></p>
-    </div>
-    <script src="app.js"></script>
+        </div>
+    </form>
+    <p id="result"></p>
+    <p id="result-info"></p>
+</div>
+<script src="app.js"></script>
 </body>
 </html>
-
