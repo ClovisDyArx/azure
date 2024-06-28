@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fruit Freshness Checker</title>
+    <title>Ingredient Compatibility Checker</title>
     <style>
         body {
             display: flex;
@@ -53,17 +53,16 @@
             color: #333;
         }
         .form-group {
-            display: flex;
-            align-items: center;
-            justify-content: center;
             margin: 1rem 0;
         }
-        input[type="file"] {
-            margin-right: 1rem;
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
         }
-        img {
-            max-width: 100px;
-            max-height: 100px;
+        select {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
         }
         button {
             background-color: #4CAF50;
@@ -104,28 +103,42 @@
             font-size: 1.2rem;
             color: #333;
         }
-        #result-info {
-            margin-top: 0.5rem;
-            font-size: 1rem;
-            color: #666;
-        }
     </style>
 </head>
 <body>
 <div class="container">
-    <h1>Fruit Freshness Checker</h1>
-    <form id="uploadForm">
+    <h1>Ingredient Compatibility Checker</h1>
+    <form id="ingredientForm">
         <div class="form-group">
-            <input type="file" id="imageInput" accept="image/*" required>
-            <img id="imagePreview" src="jonesy.png" alt="Image Preview">
+            <label for="ingredient1">Ingredient 1:</label>
+            <select id="ingredient1">
+                <option value="Pumpkin">Pumpkin</option>
+                <option value="Allspice">Allspice</option>
+                <option value="Bay Leaf">Bay Leaf</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="ingredient2">Ingredient 2:</label>
+            <select id="ingredient2">
+                <option value="Pumpkin">Pumpkin</option>
+                <option value="Allspice">Allspice</option>
+                <option value="Bay Leaf">Bay Leaf</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="ingredient3">Ingredient 3:</label>
+            <select id="ingredient3">
+                <option value="Pumpkin">Pumpkin</option>
+                <option value="Allspice">Allspice</option>
+                <option value="Bay Leaf">Bay Leaf</option>
+            </select>
         </div>
         <div style="position: relative; display: inline-block;">
-            <button type="submit">Check Freshness</button>
+            <button type="submit">Check Compatibility</button>
             <span class="loading-spinner" id="loadingSpinner"></span>
         </div>
     </form>
     <p id="result"></p>
-    <p id="result-info"></p>
 </div>
 <script src="app.js"></script>
 </body>
