@@ -6,8 +6,8 @@ document.getElementById('ingredientForm').addEventListener('submit', async funct
     const ingredient3 = document.getElementById('ingredient3').value;
     const loadingSpinner = document.getElementById('loadingSpinner');
 
-    const apiKey = 'O3XrLVTZQIXqEABfmtOKmu7aSdtNljic';
-    const endpoint = 'http://355313ea-4329-4847-8385-16a803459467.francecentral.azurecontainer.io/score';
+    const apiKey = 'YDKjIN0aEDzMZN4mGbdD7uI927ypGnhU';
+    const endpoint = 'http://9057999d-f5f9-4d00-a70b-2ce2a017952b.francecentral.azurecontainer.io/score';
 
     const data = {
         "Inputs": {
