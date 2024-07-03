@@ -22,9 +22,10 @@ def index():
 
 @app.route('/check_compatibility', methods=['POST'])
 def check_compatibility():
-    ingredient1 = request.form.get('ingredient1')
-    ingredient2 = request.form.get('ingredient2')
-    ingredient3 = request.form.get('ingredient3')
+    data = request.get_json()
+    ingredient1 = data.get('ingredient1')
+    ingredient2 = data.get('ingredient2')
+    ingredient3 = data.get('ingredient3')
 
     data = {
         "Inputs": {

@@ -3,8 +3,11 @@ document.getElementById('ingredientForm').addEventListener('submit', async funct
     const loadingSpinner = document.getElementById('loadingSpinner');
     loadingSpinner.style.display = 'inline-block';
 
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData.entries());
+    const data = {
+        'ingredient1': document.getElementById('ingredient1').value,
+        'ingredient2': document.getElementById('ingredient2').value,
+        'ingredient3': document.getElementById('ingredient3').value
+    }
 
     try {
         const response = await fetch('/check_compatibility', {
