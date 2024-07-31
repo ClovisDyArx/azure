@@ -21,7 +21,7 @@ document.getElementById('uploadForm').addEventListener('submit', async function(
         return;
     }
 
-    const apiKey = '2014efbbdf394c2f821fea7c56f80ccb';
+    const apiKey = '2014efbbdf394c2f821fea7c56f80ccb'; // no longer functionnal, do not worry ;)
     const endpointOnline = 'https://eju110624-prediction.cognitiveservices.azure.com/customvision/v3.0/Prediction/70e73cce-656c-48f5-a8d9-8b8f2ad032e6/classify/iterations/Iteration1/image';
     const endpointLocal = ' http://127.0.0.1/image'
 
