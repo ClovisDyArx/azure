@@ -13,7 +13,7 @@ def allowSelfSignedHttps(allowed):
 
 allowSelfSignedHttps(True)
 
-API_KEY = 'YDKjIN0aEDzMZN4mGbdD7uI927ypGnhU'
+API_KEY = 'YDKjIN0aEDzMZN4mGbdD7uI927ypGnhU' # no longer functionnal, do not worry ;)
 ENDPOINT = 'http://9057999d-f5f9-4d00-a70b-2ce2a017952b.francecentral.azurecontainer.io/score'
 
 @app.route('/')
